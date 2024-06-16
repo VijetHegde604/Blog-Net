@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog-Site</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Blog-Net!</h1>
+        <p class="lead">Explore a wide array of topics, from lifestyle and travel to technology and personal growth.</p>
+        <hr class="my-4">
+        <p>Join us at Blog Net with the world today!</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/create" role="button">Create Post</a>
+            <a class="btn btn-secondary btn-lg" href="#" role="button">About Us</a>
+        </p>
+    </div>
+
+    <div class="post-heading">
+        All Posts
+    </div>
+    <div id="post-container">
+        <% if (posts && posts.length > 0) { %>
+            <% posts.forEach(post => { %>
+                <div class="card">
+                    <div class="card-content">
+                        <h2 class="card-title">
+                            <%= post.title %>
+                        </h2>
+                        <p class="card-text">
+                            <% if (post.content && typeof post.content === 'string') { %>
+                                <%= post.content.length > 100 ? post.content.substring(0, 100) + '...' : post.content %>
+                            <% } else { %>
+                                No content available.
+                            <% } %>
+                        </p>
+                        <a href="/view/<%= post.id %>" class="btn btn-primary" style="margin:10px">View</a>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No posts available.</p>
+        <% } %>
+    </div>
+
+    <script src="/public/index.js"></script>
+</body>
+
+</html>
